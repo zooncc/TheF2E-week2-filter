@@ -1,5 +1,51 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    {{#link-to "index" class="navbar-brand"}}<img src="/logo.png" alt="HaveFun">{{/link-to}}
 
-{{outlet}}
+    <form class="form-inline ml-5" {{action "goSearch" on="submit"}}>
+        <div class="input-group ml-5">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+            </div>
+            {{input type="text" class="form-control" value=qInput placeholder="Explore your own activities"}}
+        </div>
+    </form>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 pt-2">
+            <div class="card sidebar-card">
+                <div class="card-body">
+                    <p class="font-weight-bold">Location</p>
+
+                    {{#power-select
+                        options=locationOptions
+                        selected=filter.location
+                        searchField="name"
+                        onchange=(action "selectLocation") as |locat|
+                    }}
+                        {{locat.name}}
+                    {{/power-select}}
+                  </div>
+            </div>
+
+            <div class="card sidebar-card">
+                <div class="card-body">
+                    <p class="font-weight-bold">Other</p>
+
+                    <div class="form-check">
+                        {{input type="checkbox" name="paid" id="paid" checked=filter.paid class="form-check-input"}}
+                        <label class="form-check-label" for="paid">付費</label>
+                    </div>
+                    <div class="form-check">
+                        {{input type="checkbox" name="openAllDday" id="openAllDday" checked=filter.openAllDday class="form-check-input"}}
+                        <label class="form-check-label" for="openAllDday">全天候開放</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            {{outlet}}
+        </div>
+    </div>
+</div>

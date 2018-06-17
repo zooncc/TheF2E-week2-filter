@@ -1,0 +1,26 @@
+$primary: #7828B4 !default;
+$sub: #9013FE !default;
+
+@import "ember-bootstrap/bootstrap";
+@import "ember-power-select";
+
+.text-sub {
+  color: $sub;
+}
+
+body {
+    background-color: #F2F2F2;
+}
+
+.sidebar-card {
+    background-color: #EBEBEB;
+}
+
+.attraction-wrapper {
+    background-color: #fff;
+    cursor: pointer;
+    
+    .media-body {
+        padding-right: 5px;
+    }
+}

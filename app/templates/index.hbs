@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col">
+        <p class="mt-2 mb-0">Showing {{displayModelCount}} results by...</p>
+
+        {{#each filterLabel as |label|}}
+            <a href="#" class="badge badge-pill badge-primary" {{action "delFilterLabel" label preventDefault=false}}>{{label.name}} <i class="far fa-times-circle"></i></a>
+        {{/each}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {{#each displayModel as |attraction|}}
+            <div class="media mt-3 attraction-wrapper" {{action "goDetails" attraction}}>
+                <img class="mr-3 img-fluid" style="max-width:150px;height:auto;" src={{attraction.Picture1}} alt={{attraction.Picdescribe1}}>
+                <div class="media-body">
+                    <h5 class="mt-1 text-sub font-weight-bold">{{attraction.Name}}</h5>
+                    <div>
+                        {{attraction.Description}}
+                    </div>
+                    <div class="mt-2 mb-2">
+                        {{#if attraction.IsShowTicketinfo}}
+                            <span class="badge badge-pill badge-primary">{{attraction.Ticketinfo}}</span>
+                        {{/if}}
+                       {{#if attraction.IsShowOpentime}}
+                            <span class="badge badge-pill badge-primary">{{attraction.Opentime}}</span>
+                        {{/if}}
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <i class="fas fa-map-marker-alt"></i> {{attraction.Zone}}
+                        <i class="far fa-calendar-alt"></i> {{format-date attraction.Changetime}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
